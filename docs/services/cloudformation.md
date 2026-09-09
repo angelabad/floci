@@ -70,7 +70,7 @@ cross-resource references.
 | SQS | `Queue`, `QueuePolicy` (accepted; policy not enforced) |
 | SNS | `Topic`, `Subscription`, `TopicPolicy` |
 | DynamoDB | `Table`, `GlobalTable` |
-| Lambda | `Function` (Zip via S3/inline `ZipFile`, and Image), `LayerVersion`, `EventSourceMapping` (SQS, Kinesis, DynamoDB Streams), `Version`, `Alias` (also what SAM's `AutoPublishAlias` expands into), `Permission`, `MicrovmImage`, `NetworkConnector`. Inline `ZipFile` packages include the `cfn-response` (Node.js) / `cfnresponse` (Python) module AWS injects for that code path, so Solutions-style custom-resource handlers work. |
+| Lambda | `Function` (Zip via S3/inline `ZipFile`, and Image), `LayerVersion`, `EventSourceMapping` (SQS, Kinesis, DynamoDB Streams), `Version`, `Alias` (also what SAM's `AutoPublishAlias` expands into), `Permission`, `EventInvokeConfig`, `MicrovmImage`, `NetworkConnector`. Inline `ZipFile` packages include the `cfn-response` (Node.js) / `cfnresponse` (Python) module AWS injects for that code path, so Solutions-style custom-resource handlers work. |
 | IAM | `Role`, `User`, `AccessKey`, `Policy`, `ManagedPolicy`, `InstanceProfile` |
 | Organizations | `Organization`, `OrganizationalUnit`, `Account`, `Policy`, `ResourcePolicy` |
 | SSM | `Parameter` |
@@ -105,6 +105,7 @@ cross-resource references.
 | WAFv2 | `WebACL` |
 | Config | `ConfigRule` |
 | CloudFormation | `CustomResource`, `Custom::DynamoDBReplica` (applied natively against DynamoDB, not via a provider Lambda), `Stack` (nested stacks), `Custom::*` (Lambda-backed) |
+| CloudTrail | `Trail` |
 | CDK | `CDK::Metadata` (accepted; no-op) |
 <!-- floci:cfn-types:end -->
 

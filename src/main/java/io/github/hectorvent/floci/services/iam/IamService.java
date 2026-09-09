@@ -87,7 +87,8 @@ public class IamService implements SessionAccountLookup, ResourceProvider {
     private static final String SERVICE_LINKED_ROLE_NAME_PREFIX = "AWSServiceRoleFor";
     private static final Map<String, String> SERVICE_LINKED_ROLE_NAMES = Map.of(
             "autoscaling.amazonaws.com", "AutoScaling",
-            "cloud9.amazonaws.com", "AWSCloud9"
+            "cloud9.amazonaws.com", "AWSCloud9",
+            "ram.amazonaws.com", "ResourceAccessManager"
     );
     private static final String AMAZONAWS_DOMAIN = ".amazonaws.com";
     /** AWSServiceName as AWS constrains it: 1-128 characters of {@code [\w+=,.@-]}. */
@@ -276,7 +277,7 @@ public class IamService implements SessionAccountLookup, ResourceProvider {
         for (AwsManagedPolicies.ManagedPolicyDef def : AwsManagedPolicies.POLICIES) {
             String arn = def.arn();
             catalog.put(arn, new IamPolicy("ANPA" + randomId(16), def.name(), def.path(), arn,
-                    def.description(), AwsManagedPolicies.PERMISSIVE_DOCUMENT));
+                    def.description(), def.document()));
         }
         return catalog;
     }
